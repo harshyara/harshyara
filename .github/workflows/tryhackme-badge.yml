@@ -1,53 +1,66 @@
-name: Update TryHackMe Badge
-
-# allow the workflow to push changes
-permissions:
-  contents: write
+name: TryHackMe Update Badge
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs every day at midnight
-  workflow_dispatch: # Allows manual triggering
+    - cron: "0 19 * * *"   # every day, 12:30 AM India time
+  workflow_dispatch:         # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write
+
+env:
+  BADGE_URL: "https://tryhackme.com/badge/t/4b7bc90f47101dd73c00fad6e83db01b47ce6894dff3bcb2a790adfc7fc358bf75d06661b43d52d28ccad52e4a33f4b4?theme=dark"
 
 jobs:
-  update-badge:
-    runs-on: ubuntu-22.04
+  tryhackme-badge-update:
+    name: Take a picture of the TryHackMe badge
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        # allow pushing back to the same repo using the GITHUB_TOKEN
-        persist-credentials: true
-        fetch-depth: 0
+      - uses: actions/checkout@v4
 
-    - name: Configure Git Identity
-      run: |
-        git config --global user.name "GitHub Actions Bot"
-        git config --global user.email "actions@github.com"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-    - name: Fetch TryHackMe Badge
-      uses: DhanushNehru/tryhackme-badge-action-workflow@v1.0
-      # If this action returns non-zero when there's no change, allow the job to continue.
-      # Remove continue-on-error if you fix the action to exit 0 when nothing changed.
-      continue-on-error: true
-      with:
-        image_path: './assets/tryhackme-badge.png'
-        username: 'harshyara'
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install a headless browser
+        run: |
+          npm init -y >/dev/null
+          npm install playwright@1.47.2 >/dev/null
+          npx playwright install --with-deps chromium
 
-    - name: Commit and push badge if changed
-      env:
-        COMMIT_MESSAGE: "Updated THM profile badge"
-      run: |
-        git add ./assets/tryhackme-badge.png || true
+      - name: Render the badge and save it as an image
+        run: |
+          mkdir -p assets
+          cat > snap.mjs <<'JS'
+          import { chromium } from "playwright";
+          const url = process.env.BADGE_URL;
+          const browser = await chromium.launch();
+          const page = await browser.newPage({ viewport: { width: 1000, height: 600 }, deviceScaleFactor: 2 });
+          await page.setContent(`<!doctype html><html><head><meta charset="utf-8">
+            <style>html,body{margin:0;padding:0;background:transparent}#wrap{display:inline-block;padding:0}</style></head>
+            <body><div id="wrap"><script src="${url}"></script></div></body></html>`, { waitUntil: "networkidle" });
+          await page.waitForTimeout(4000);
+          const box = await page.evaluate(() => {
+            let r = { l: Infinity, t: Infinity, rr: 0, b: 0 };
+            document.querySelectorAll("#wrap *").forEach(el => {
+              if (el.tagName === "SCRIPT" || el.tagName === "STYLE") return;
+              const b = el.getBoundingClientRect();
+              if (b.width < 2 || b.height < 2) return;
+              r.l = Math.min(r.l, b.left); r.t = Math.min(r.t, b.top);
+              r.rr = Math.max(r.rr, b.right); r.b = Math.max(r.b, b.bottom);
+            });
+            return r.rr ? { x: r.l, y: r.t, width: r.rr - r.l, height: r.b - r.t } : null;
+          });
+          if (!box) { console.error("The badge did not render. Check BADGE_URL."); process.exit(1); }
+          await page.screenshot({ path: "assets/thm_badge.png", clip: box, omitBackground: true });
+          console.log("Saved assets/thm_badge.png", box);
+          await browser.close();
+          JS
+          node snap.mjs
 
-        # If there are no staged changes, exit successfully
-        if git diff --cached --quiet; then
-          echo "No changes to commit"
-          exit 0
-        fi
-
-        git commit -m "$COMMIT_MESSAGE"
-
-        # Push current HEAD back to the branch that triggered the workflow
-        git push origin "HEAD:${{ github.ref_name }}"
+      - name: Commit the new picture
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add assets/thm_badge.png
+          git diff --cached --quiet && echo "Badge unchanged" || (git commit -m "Update TryHackMe badge" && git push)
