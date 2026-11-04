@@ -91,21 +91,23 @@ I build security infrastructure for one of India's largest payments platforms
 | 🎓 | **B.Tech, Computer Science & Engineering** (GPA 9.45/10) | Dayananda Sagar University | 2021 – 2025 |
 
 ---
-
+ 
 ### 🚩 TryHackMe
-
-<script src="https://tryhackme.com/badge/t/31d76cce767ab66a4e076b0c949b0589978bb008c3ae19baab45718aacb95124bafd7c9d37f407956192adbaf755dd6f?theme=dark"></script>
-
+ 
+<div align="center">
+<a href="https://tryhackme.com/p/harshyara"><img width="360" src="./assets/thm_badge.png" alt="TryHackMe badge" /></a>
+ 
+</div>
 ---
-
+ 
 ### 📊 Stats
-
-<div align="center"> <img width="100%" src="./profile-summary-card-output/default/0-profile-details.svg" alt="Contributions" />
-
-<img width="49%" src="./profile-summary-card-output/default/3-stats.svg" alt="GitHub stats" /> <img width="49%" src="./profile-summary-card-output/default/1-repos-per-language.svg" alt="Top languages" />
-
-<img width="100%" src="https://streak-stats.demolab.com/?user=harshyara&hide_border=true&card_width=980&background=FFFFFF&ring=E48AAB&fire=E48AAB&stroke=EEEEEE&currStreakLabel=E48AAB&sideLabels=3D3354&currStreakNum=3D3354&sideNums=3D3354&dates=6C6286" alt="Contribution streak" /> </div>
-
+ 
+<div align="center">
+<img width="100%" src="./profile-summary-card-output/default/0-profile-details.svg" alt="Contributions" />
+<img width="49%" src="./profile-summary-card-output/default/3-stats.svg" alt="GitHub stats" />&nbsp;<img width="49%" src="./profile-summary-card-output/default/1-repos-per-language.svg" alt="Top languages" />
+ 
+<img width="100%" src="https://streak-stats.demolab.com/?user=harshyara&hide_border=true&card_width=980&background=FFFFFF&ring=E48AAB&fire=E48AAB&stroke=EEEEEE&currStreakLabel=E48AAB&sideLabels=3D3354&currStreakNum=3D3354&sideNums=3D3354&dates=6C6286" alt="Contribution streak" />
+</div>
 ---
 
 ### 🌸 Off the clock
