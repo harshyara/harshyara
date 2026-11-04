@@ -100,6 +100,7 @@ I build security infrastructure for one of India's largest payments platforms
  
 <img width="100%" src="https://streak-stats.demolab.com/?user=harshyara&hide_border=true&card_width=980&background=FFFFFF&ring=E48AAB&fire=E48AAB&stroke=EEEEEE&currStreakLabel=E48AAB&sideLabels=3D3354&currStreakNum=3D3354&sideNums=3D3354&dates=6C6286" alt="Contribution streak" />
 </div>
+
 ---
 
 ### 🌸 Off the clock
