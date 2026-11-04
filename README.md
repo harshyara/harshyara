@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Silkscreen&size=30&duration=3200&pause=900&color=E48AAB&center=true&vCenter=true&width=640&height=60&lines=Hi%2C+I'm+Harshyara+%E2%99%A5;Information+Security+Engineer;Breaking+things+so+attackers+can't" alt="Hi, I'm Harshyara" />
+<img src="https://readme-typing-svg.demolab.com?font=Silkscreen&size=30&duration=3200&pause=900&color=E48AAB&center=true&vCenter=true&width=640&height=60&lines=Hi%2C+I'm+Harshyara+%E2%99%A5;Information+Security+Engineer" alt="Hi, I'm Harshyara" />
 
 **Information Security Engineer @ PhonePe** · Bangalore, India
 
