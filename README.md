@@ -91,12 +91,11 @@ I build security infrastructure for one of India's largest payments platforms
 | 🎓 | **B.Tech, Computer Science & Engineering** (GPA 9.45/10) | Dayananda Sagar University | 2021 – 2025 |
 ---
  
-### 🚩 TryHackMe
- 
-<div align="center">
-<a href="https://tryhackme.com/p/harshyara"><img width="360" src="./assets/thm_badge.png" alt="TryHackMe badge" /></a>
- 
-</div>
+   ### 🚩 TryHackMe
+
+   <div align="center">
+   <a href="https://tryhackme.com/p/harshyara"><img width="360" src="./assets/thm_badge.png" alt="TryHackMe badge" /></a>
+   </div>
 
 ---
  
