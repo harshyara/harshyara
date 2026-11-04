@@ -1,13 +1,13 @@
 name: TryHackMe Update Badge
- 
+
 on:
   schedule:
     - cron: "0 19 * * *"   # every day, 12:30 AM India time
   workflow_dispatch:         # lets you run it by hand from the Actions tab
- 
+
 permissions:
   contents: write
- 
+
 jobs:
   tryhackme-badge-update:
     name: Update the TryHackMe badge
@@ -16,5 +16,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: p4p1/tryhackme-badge-workflow@main
         with:
-          username: "harshyara"
+          username: "harshyara"   # <- change this
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
