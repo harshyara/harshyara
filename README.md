@@ -4,7 +4,7 @@
 
 **Information Security Engineer @ PhonePe** · Bangalore, India
 
-I build security infrastructure for one of India's largest payments platforms: a Rust-based WAF, SIEM pipelines on ELK and ClickHouse, and edge defenses on Cloudflare and Akamai.
+I build security infrastructure for one of India's largest payments platforms
 
 <a href="https://harshyara.blog"><img src="https://img.shields.io/badge/harshyara.blog-E48AAB?style=for-the-badge&logo=hashnode&logoColor=white" alt="Website" /></a>
 <a href="https://www.linkedin.com/in/harshyara-bukkapatnam"><img src="https://img.shields.io/badge/LinkedIn-B6A2D6?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
@@ -21,7 +21,6 @@ I build security infrastructure for one of India's largest payments platforms: a
 - 🧱 **Web Application Firewall:** a reverse-proxy WAF in **Rust** on the **Coraza** engine that inspects production HTTP traffic in-line and blocks OWASP Top 10 attacks (SQLi, XSS, RCE) before they reach upstream services
 - 📡 **Detection engineering:** SIEM log pipelines into production **ELK**, with **ClickHouse** and **Redis** behind them for low-latency correlation of security telemetry
 - 🌐 **Edge security:** bot management, rate limits, geo-fencing and DDoS mitigation on **Cloudflare** and **Akamai**
-- 🧩 **Threat modeling:** **STRIDE** reviews for new microservices before launch, plus automated config hardening across the Linux fleet with **SaltStack**
 - 🤖 **SOC automation:** an L1 triage Slack bot in **Go** that auto-triages alerts and enriches IOCs
 
 ---
@@ -95,14 +94,7 @@ I build security infrastructure for one of India's largest payments platforms: a
 
 ### 📊 Stats
 
-<div align="center">
-
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=harshyara&show_icons=true&hide_border=true&bg_color=F6F6DF&title_color=E48AAB&icon_color=93C3A0&text_color=3D3354&rank_icon=github" alt="GitHub stats" />
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=harshyara&layout=compact&hide_border=true&bg_color=F6F6DF&title_color=E48AAB&text_color=3D3354" alt="Top languages" />
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=harshyara&hide_border=true&background=F6F6DF&ring=E48AAB&fire=E48AAB&currStreakLabel=3D3354&sideLabels=3D3354&currStreakNum=3D3354&sideNums=3D3354&dates=6C6286" alt="Contribution streak" />
-
-</div>
+<div align="center"> <img src="./profile-summary-card-output/default/0-profile-details.svg" alt="Contributions" /> <img height="180" src="./profile-summary-card-output/default/3-stats.svg" alt="GitHub stats" /> <img height="180" src="./profile-summary-card-output/default/1-repos-per-language.svg" alt="Top languages" /> <img src="https://streak-stats.demolab.com/?user=harshyara&hide_border=true&background=F6F6DF&ring=E48AAB&fire=E48AAB&currStreakLabel=3D3354&sideLabels=3D3354&currStreakNum=3D3354&sideNums=3D3354&dates=6C6286" alt="Contribution streak" /> </div>
 
 ---
 
