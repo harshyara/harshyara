@@ -89,6 +89,14 @@ I build security infrastructure for one of India's largest payments platforms
 | 🟢 | **Information Security Engineer** | PhonePe · Bangalore | May 2025 – Present |
 | 🩷 | **Information Security Intern** | PhonePe · Bangalore | Nov 2024 – Apr 2025 |
 | 🎓 | **B.Tech, Computer Science & Engineering** (GPA 9.45/10) | Dayananda Sagar University | 2021 – 2025 |
+---
+ 
+### 🚩 TryHackMe
+ 
+<div align="center">
+<a href="https://tryhackme.com/p/harshyara"><img width="360" src="./assets/thm_badge.png" alt="TryHackMe badge" /></a>
+ 
+</div>
 
 ---
  
