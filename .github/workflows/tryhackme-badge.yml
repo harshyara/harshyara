@@ -34,29 +34,72 @@ jobs:
           cat > snap.mjs <<'JS'
           import { chromium } from "playwright";
           const url = process.env.BADGE_URL;
-          const browser = await chromium.launch();
-          const page = await browser.newPage({ viewport: { width: 1000, height: 600 }, deviceScaleFactor: 2 });
-          await page.setContent(`<!doctype html><html><head><meta charset="utf-8">
-            <style>html,body{margin:0;padding:0;background:transparent}#wrap{display:inline-block;padding:0}</style></head>
-            <body><div id="wrap"><script src="${url}"></script></div></body></html>`, { waitUntil: "networkidle" });
-          await page.waitForTimeout(4000);
-          const box = await page.evaluate(() => {
+          const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36";
+          const browser = await chromium.launch({ args: ["--disable-blink-features=AutomationControlled"] });
+          const ctx = await browser.newContext({ userAgent: UA, viewport: { width: 1000, height: 700 }, deviceScaleFactor: 2 });
+          const page = await ctx.newPage();
+
+          // 1. Look at what the badge script actually contains
+          const res = await ctx.request.get(url, { headers: { Referer: "https://github.com/" } });
+          const js = await res.text();
+          console.log("Badge script:", res.status(), js.length, "chars");
+          console.log(js.slice(0, 600));
+
+          // Find the address of the badge itself inside the script (usually an iframe)
+          const urls = [...js.matchAll(/https?:\/\/[^"'`\s\\)<>]+/g)].map(m => m[0].replace(/&amp;/g, "&"));
+          const target = urls.find(u => /badge|public-profile|userPublicId/i.test(u) && !u.endsWith(".js"));
+          console.log("Badge address found in script:", target || "(none)");
+
+          // Measure everything visible on the page and crop to it
+          const measure = () => page.evaluate(() => {
             let r = { l: Infinity, t: Infinity, rr: 0, b: 0 };
-            document.querySelectorAll("#wrap *").forEach(el => {
-              if (el.tagName === "SCRIPT" || el.tagName === "STYLE") return;
+            document.querySelectorAll("body *").forEach(el => {
+              if (["SCRIPT", "STYLE", "LINK", "META"].includes(el.tagName)) return;
               const b = el.getBoundingClientRect();
-              if (b.width < 2 || b.height < 2) return;
+              if (b.width < 4 || b.height < 4) return;
               r.l = Math.min(r.l, b.left); r.t = Math.min(r.t, b.top);
               r.rr = Math.max(r.rr, b.right); r.b = Math.max(r.b, b.bottom);
             });
-            return r.rr ? { x: r.l, y: r.t, width: r.rr - r.l, height: r.b - r.t } : null;
+            return r.rr ? { x: Math.max(0, r.l), y: Math.max(0, r.t), width: r.rr - Math.max(0, r.l), height: r.b - Math.max(0, r.t) } : null;
           });
-          if (!box) { console.error("The badge did not render. Check BADGE_URL."); process.exit(1); }
+
+          let box = null;
+          // 2a. Open the badge address directly
+          if (target) {
+            await page.goto(target, { waitUntil: "networkidle", referer: "https://github.com/" }).catch(e => console.log("goto failed:", e.message));
+            await page.waitForTimeout(3000);
+            box = await measure();
+            console.log("Direct page box:", box);
+          }
+          // 2b. Otherwise run the script on a page, like a website would
+          if (!box) {
+            await page.goto("about:blank");
+            await page.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent}</style></head><body><script src="${url}"></script></body></html>`, { waitUntil: "networkidle" }).catch(() => {});
+            await page.waitForTimeout(5000);
+            for (const f of page.frames()) if (f !== page.mainFrame()) await f.waitForLoadState("networkidle").catch(() => {});
+            box = await measure();
+            console.log("Embedded page box:", box);
+          }
+
+          if (!box || box.width < 40 || box.height < 20) {
+            await page.screenshot({ path: "debug.png", fullPage: true });
+            console.log("Page text:", (await page.evaluate(() => document.body.innerText)).slice(0, 400));
+            console.error("The badge did not render. A debug screenshot is attached to this run.");
+            process.exit(1);
+          }
           await page.screenshot({ path: "assets/thm_badge.png", clip: box, omitBackground: true });
           console.log("Saved assets/thm_badge.png", box);
           await browser.close();
           JS
           node snap.mjs
+
+      - name: Upload a debug screenshot if it failed
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tryhackme-debug
+          path: debug.png
+          if-no-files-found: ignore
 
       - name: Commit the new picture
         run: |
