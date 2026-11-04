@@ -92,14 +92,6 @@ I build security infrastructure for one of India's largest payments platforms
 
 ---
  
-### 🚩 TryHackMe
- 
-<div align="center">
-<a href="https://tryhackme.com/p/harshyara"><img width="360" src="./assets/thm_badge.png" alt="TryHackMe badge" /></a>
- 
-</div>
----
- 
 ### 📊 Stats
  
 <div align="center">
