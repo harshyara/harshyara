@@ -95,8 +95,8 @@ I build security infrastructure for one of India's largest payments platforms
 ### 📊 Stats
  
 <div align="center">
-<img width="100%" src="./profile-summary-card-output/default/0-profile-details.svg" alt="Contributions" />
-<img width="49%" src="./profile-summary-card-output/default/3-stats.svg" alt="GitHub stats" />&nbsp;<img width="49%" src="./profile-summary-card-output/default/1-repos-per-language.svg" alt="Top languages" />
+<img width="100%" src="./profile-summary-card-output/github_dark/0-profile-details.svg" alt="Contributions" />
+<img width="49%" src="./profile-summary-card-output/github_dark/3-stats.svg" alt="GitHub stats" />&nbsp;<img width="49%" src="./profile-summary-card-output/github_dark/1-repos-per-language.svg" alt="Top languages" />
  
 <img width="100%" src="./assets/streak.svg" alt="Contribution streak" />
 </div>
