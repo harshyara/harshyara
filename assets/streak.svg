@@ -7,9 +7,9 @@
     <text x="163" y="150" font-size="13" fill="#9198A1">Dec 31, 2021 – Present</text>
     <circle cx="490" cy="72" r="40" fill="none" stroke="#F0A2BF" stroke-width="5"/>
     <path d="M490 20 c6 6 9 12 4 18 c4 -1 6 -4 6 -7 c4 5 4 12 -1 16 c-5 4 -13 3 -16 -3 c-3 -6 1 -11 5 -15 c-1 4 0 6 2 7 c-2 -6 -2 -11 0 -16z" fill="#F0A2BF" stroke="#0D1117" stroke-width="3" paint-order="stroke"/>
-    <text x="490" y="84" font-size="34" font-weight="700" fill="#E6EDF3">1</text>
+    <text x="490" y="84" font-size="34" font-weight="700" fill="#E6EDF3">0</text>
     <text x="490" y="140" font-size="17" font-weight="700" fill="#F0A2BF">Current Streak</text>
-    <text x="490" y="166" font-size="13" fill="#9198A1">Nov 7</text>
+    <text x="490" y="166" font-size="13" fill="#9198A1">No streak yet</text>
     <text x="816" y="88" font-size="36" font-weight="700" fill="#E6EDF3">3</text>
     <text x="816" y="122" font-size="16" fill="#E6EDF3">Longest Streak</text>
     <text x="816" y="150" font-size="13" fill="#9198A1">Feb 8, 2024 – Feb 10, 2024</text>
